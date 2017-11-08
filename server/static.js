@@ -40,6 +40,7 @@ var app = (r) => {
     }
 }
 var svr = new http.Server(argv.p || 8080, app)
+// run 异步执行
 svr.run((err, result) => {
 })
 process.run("open", [`http://${s.localAddress}:${argv.p || 8080}`])
