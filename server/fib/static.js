@@ -7,9 +7,10 @@ var net = require("net")
 var s = new net.Socket()
 var argv = require("minimist")(process.argv.slice(2))
 var app = (r) => {
+    r.address = decodeURI(r.address)
     var dirPath = path.join(__dirname, r.address)
     if (r.address === "/favicon.ico")
-    return
+        return
     try {
         console.log("===========\x1b[32m%s\x1b[0m", `visit @ ${r.address}`)
         if (fs.stat(dirPath).isDirectory()) {
@@ -41,6 +42,5 @@ var app = (r) => {
 }
 var svr = new http.Server(argv.p || 8080, app)
 // run 异步执行
-svr.run((err, result) => {
-})
+svr.run((err, result) => {})
 process.run("open", [`http://${s.localAddress}:${argv.p || 8080}`])
