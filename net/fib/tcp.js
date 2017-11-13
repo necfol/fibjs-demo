@@ -2,7 +2,7 @@ const net = require('net')
 var func = (conn) => {
     var data
     while (data = conn.read()) {
-        console.log(data)
+        console.log(data.toString())
         conn.write('fuck\n')    
     }
 }
